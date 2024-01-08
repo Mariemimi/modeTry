@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+       {% if panier is empty %}
+        <p>Votre panier est vide.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in panier %}
+                    <tr>
+                        <td>{{ produit.nom }}</td>
+                        <td>{{ produit.prix }} €</td>
+                        <td>
+                        <a href="{{ path('app_diminuer_panier', {'produitId': produit.id }) }}" class="btn btn-success">-</a>
+                        {{ produit.quantite }}
+                        <a href="{{ path('app_augmenter_panier', {'produitId': produit.id }) }}" class="btn btn-success">+</a>
+                        </td>
+                        <td>{{ produit.prix * produit.quantite }} €</td>
+                        <td>
+                         <a href="{{ path('app_supression_panier', {'produitId': produit.id }) }}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <p>Total : {{ total }} €</p>
+    <a href="{{ path('app_stripe') }}">Commander</a>
+</div>
+{% endblock %}

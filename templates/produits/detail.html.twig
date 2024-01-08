@@ -1,0 +1,230 @@
+{% extends 'base.html.twig' %}
+{% block title %} DetailProduits{% endblock %}
+{% block body %}
+
+
+<div class="card" style="width: 18rem;">
+  <img src="{{ asset(detailProduits.photo) }}" class="card-img-top" alt="{{ detailProduits.nom }}">
+
+  <div class="card-body">
+    <h5 class="card-title">{{ detailProduits.nom }}</h5>
+    <p class="card-text">{{ detailProduits.description }}</p>
+    <p class="card-text">Taille : {{ detailProduits.taille }}</p>
+    <p class="card-text">Prix : {{ detailProduits.prix }} €</p>
+    <a href="{{ path('app_panier_ajout',{'idproduit': detailProduits.id }) }}" class="btn btn-primary"> Panier</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{  path('app_modification_produit', {'id': detailProduits.id} )}}"><button>Modifier</button></a>
+    {% endif %}
+  </div>
+</div>
+<div>
+<h5> Commantaire produits</h5>
+{% if commentaire is not empty %}
+<ul> {% for avis in commentaire %}
+<li>
+<strong>{{ avis.user.nom }}</strong>
+<em>{{ avis.dateAvis|date('Y-m-d') }}</em>
+<p>{{ avis.message }}</p>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+</div>
+<div class="example-wrapper">
+   <h5>Avis {{ detailProduits.nom }}</h5>
+
+    {{ form_start(form) }}
+    {{ form_row(form.message) }}
+    {{ form_end(form) }}
+</div>
+
+
+
+
+
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.container h2{
+  color:blue;
+
+}
+
+header, section.content, footer {
+    background-color: #fff;
+    padding: 20px 0;
+}
+
+header h1, footer p {
+    text-align: center;
+    color: #333;
+}
+
+header p {
+    font-size: 18px;
+}
+
+section.content {
+    text-align: center;
+    color: #333;
+}
+
+.content h2, .content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+}
+
+
+</style>
+
+
+
+
+
+<body>
+
+<header>
+    <div class="container">
+       
+        <h2>Guide des Tailles</h2>
+    </div>
+</header>
+
+<section class="content">
+    <div class="container">
+        <h2>Comment Mesurer Votre Taille Correctement</h2>
+        <p>Assurez-vous de suivre ces instructions pour obtenir des mesures précises et trouver la taille parfaite pour vos vêtements.</p>
+
+        <h3>1. Tour de Poitrine</h3>
+        <p>Enroulez le mètre autour de la partie la plus large de votre poitrine, sous vos aisselles.</p>
+
+        <h3>2. Tour de Taille</h3>
+        <p>Mesurez votre tour de taille au niveau le plus étroit, généralement juste au-dessus du nombril.</p>
+
+        <h3>3. Tour de Hanches</h3>
+        <p>Placez le mètre autour de la partie la plus large de vos hanches.</p>
+
+        <h2>Tableau des Tailles</h2>
+        <table>
+            <thead>
+                
+                <tr>
+                    <th>Taille</th>
+                    <th>Tour de Poitrine (cm)</th>
+                    <th>Tour de Taille (cm)</th>
+                    <th>Tour de Hanches (cm)</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                   
+                    <td>S</td>
+                    <td>86-89</td>
+                    <td>66-69</td>
+                    <td>92-95</td>
+                </tr>
+                <tr>
+                    
+                    <td>M</td>
+                    <td>90-93</td>
+                    <td>70-73</td>
+                    <td>96-99</td>
+                </tr>
+                <tr>
+                    <td>L</td>
+                    <td>94-96</td>
+                    <td>97-100</td>
+                    <td>101-103</td>
+                </tr>
+                <tr>
+                    <td>XL</td>
+                    <td>104-106</td>
+                    <td>106-109</td>
+                    <td>110-113</td>
+                </tr>
+                <tr>
+                    <td>XXL</td>
+                    <td>114-117</td>
+                    <td>118-120</td>
+                    <td>121-124</td>
+                </tr>
+                <tr>
+                    <td>XXXL</td>
+                    <td>125-128</td>
+                    <td>129-132</td>
+                    <td>133-135</td>
+                </tr>
+                <tr>
+                    <td>4XL</td>
+                    <td>136-140</td>
+                    <td>141-143</td>
+                    <td>144-148</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 ModeTry - Guide des Tailles</p>
+    </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

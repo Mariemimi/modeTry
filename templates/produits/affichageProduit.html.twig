@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %} Produits {% endblock %}
+{% block body %}
+
+{% for produit in produits %}
+<div class="card" style="width: 18rem;">
+  <img src="{{ asset(produit.photo) }}" class="card-img-top" alt="produit.nom">
+
+  <div class="card-body ">
+    <h5 class="card-title">{{ produit.nom }}</h5>
+    <p class="card-text">{{ produit.description }}</p>
+    <p class="card-text">Taille : {{ produit.taille }}</p>
+    <p class="card-text">Prix : {{ produit.prix }} €</p>
+    <a href="{{ path('app_panier_ajout',{'idproduit': produit.id }) }}" class="btn-primary"> Panier</a>
+    <a href="{{ path('app_produits_detail', {'id': produit.id}) }}">Voir plus</a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{  path('app_modification_produit', {'id': produit.id} )}}"><button>Modifier</button></a>
+    {% endif %}
+  </div>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}
+

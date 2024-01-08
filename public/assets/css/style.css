@@ -1,0 +1,19 @@
+.imgProduit {
+max-width: 50%;
+margin-left: 55px;
+}
+
+
+
+
+/*.produits{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}*/
+
+#logo-container {
+display: flex;
+justify-content: space-around;
+}
+

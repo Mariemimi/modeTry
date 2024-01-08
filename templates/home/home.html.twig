@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<style>
+    /*.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }*/
+</style>
+
+ <img src="assets/img/picture-first.jpeg" style='width: 100%'/>
+
+    
+
+      <div class="container">
+    <div class="row">
+    {% for produit in produits %}
+
+<div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset(produit.photo) }}" alt="{{ produit.nom }}" class="card-img-top"> 
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.nom }}</h5>
+                        <p class="card-text">{{ produit.prix }} €</p>
+                        <p class="card-text">{{ produit.taille }}</p>
+                        <p class="card-text">{{ produit.couleur }}</p>
+                        {# <p class="card-text">{{  produit.description | default('Aucune description pour ce produit')  }}</p>#}
+                    <a href="{{ path('app_produits_detail', {'id': produit.id}) }}" class="btn btn-dark text-light">Voir plus</a>
+                    <a href="{{ path('app_essayage_virtuel')}}" class="btn btn-dark text-light">Essayage</a>
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+        
+    </div>
+</div>   
+
+ 
+
+
+
+ 
+
+{% endblock %}

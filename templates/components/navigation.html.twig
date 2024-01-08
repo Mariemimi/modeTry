@@ -1,0 +1,132 @@
+
+
+<nav class="text-center  bg-black">
+<p class="text-white">Trouvez la bonne taille<p/>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+            
+          
+            <img src="{{ asset('assets/img/logomodeTry.png') }}" style='width: 10%'/>
+            
+           
+                 <li class="nav-item">
+                   <a class="nav-link active" href="{{ path('app_home')}}">Accueil
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Femmes</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Vêtements</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Chaussures
+                        <div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">Sacs<div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">Beauty<div class="dropdown-divider"></a></div>
+                    </div>
+                </li>
+                    
+                
+                {% if is_granted('ROLE_ADMIN') %}
+             
+                
+                <li class="nav-item">
+                   <a class="nav-link" href="{{ path('app_produits') }}">Ajout produit</a>
+                </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_categories')}}">Ajout catégories</a>
+                    
+                </li>
+                {% elseif is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                   
+                 </li>
+                <li class="nav-item">
+                     <a class="nav-link" href="{{ path('app_mon_profil')}}">Mon profil</a>
+                     <li class="nav-item">
+                     <a class="nav-link" href="{{ path('app_panier')}}">Panier</a>
+                 </li>
+                    {% endif %}
+              
+                
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hommes</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Chemises</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Pantalons
+                        <div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">T-SHIRT<div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">Accessoires<div class="dropdown-divider"></a></div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Enfants</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">1-14ans filles</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">1-14ans garçons
+                        <div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">0-18mois bébé<div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">0-6mois naissance<div class="dropdown-divider"></a></div>
+                    </div>
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_essayage_virtuel')}}">Essai virtuel</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plus</a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Nouveautés</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Prêt-à-portér
+                        <div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">Sport<div class="dropdown-divider"></a></div>
+                        <a class="dropdown-item" href="#">Idées cadeaux<div class="dropdown-divider"></a></div>
+                    </div>
+                </li>
+
+
+
+                    <li class="nav-item">
+                    <a class="nav-link" href="">Contactez-nous</a>
+                </li>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="text" placeholder="Search">
+                
+            </form>
+            
+            {% if not app.user %}
+            
+                <a href="{{ path('app_login') }}" class="btn btn-info me-1">Connexion</a>
+                <a href="{{ path('app_register') }}" class="btn btn-light me-1">Inscription</a>
+            {% else %}
+
+                <a href="{{ path('app_logout') }}" class="btn btn-light me-3"><i class="fa-solid fa-power-off fa-xl"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    
+</nav>
+<nav class="text-center  bg-warning">
+<p class="text-white">Essayez virtuellement les vêtements avant d'acheter pour trouver la taille parfaite<p/>
+</nav>
+
+            
